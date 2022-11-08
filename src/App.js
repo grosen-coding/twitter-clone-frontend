@@ -1,19 +1,16 @@
 import "./App.css";
-import Tweet from "./Tweet";
+import Quote from "./Quote";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [tweets, setTweets] = useState([]);
+  const [quotes, setQuotes] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://coursera-twitter-api.herokuapp.com/tweets")
+      .get("https://joeroganapi.herokuapp.com/api/quotes/")
       .then((res) => {
-        const tweetData = res.data;
-
-        console.log(tweetData);
-        setTweets(tweetData);
+        setQuotes(res.data);
         console.log(res);
         console.log("The data was retrieved");
       })
@@ -25,7 +22,9 @@ function App() {
 
   return (
     <div>
-      <Tweet tweets={tweets} />
+      <h1>Joe Rogan Quotes You Should Probably Ignore</h1>
+
+      <Quote quotes={quotes} />
     </div>
   );
 }
